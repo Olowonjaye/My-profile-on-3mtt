@@ -2,111 +2,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product Landing Page</title>
+  <title>Calculator App</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
     body {
-      line-height: 1.6;
-      color: #333;
-    }
-    header {
-      background: #007BFF;
-      color: #fff;
-      padding: 60px 20px;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 2.5rem;
-    }
-    header p {
-      margin: 20px 0;
-      font-size: 1.2rem;
-    }
-    .cta-button {
-      background: #fff;
-      color: #007BFF;
-      padding: 10px 20px;
-      border: none;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background 0.3s ease;
-    }
-    .cta-button:hover {
-      background: #e0e0e0;
-    }
-    .features {
+      font-family: Arial, sans-serif;
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      padding: 40px 20px;
-      background: #f9f9f9;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
     }
-    .feature {
-      flex: 1 1 250px;
-      max-width: 300px;
-      margin: 15px;
-      text-align: center;
-    }
-    .feature img {
-      width: 60px;
-      margin-bottom: 15px;
-    }
-    footer {
-      background: #333;
-      color: #fff;
-      text-align: center;
+    .calculator {
+      background: #fff;
       padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    footer a {
+    .display {
+      width: 100%;
+      height: 40px;
+      text-align: right;
+      margin-bottom: 10px;
+      font-size: 24px;
+      padding: 5px;
+      border: 1px solid #ccc;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 60px);
+      gap: 10px;
+    }
+    button {
+      height: 50px;
+      font-size: 18px;
+      border: none;
+      background-color: #eee;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button.operator {
+      background-color: #f9a825;
       color: #fff;
-      margin: 0 10px;
-      text-decoration: none;
     }
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      header p {
-        font-size: 1rem;
-      }
+    button.equals {
+      background-color: #4caf50;
+      color: #fff;
+    }
+    button.clear {
+      background-color: #f44336;
+      color: #fff;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>AmazingApp</h1>
-    <p>Empower your daily productivity with cutting-edge tools</p>
-    <button class="cta-button">Sign Up Now</button>
-  </header>  <section class="features">
-    <div class="feature">
-      <img src="https://via.placeholder.com/60" alt="Feature 1">
-      <h3>Easy to Use</h3>
-      <p>Intuitive design that helps you get started quickly.</p>
-    </div>
-    <div class="feature">
-      <img src="https://via.placeholder.com/60" alt="Feature 2">
-      <h3>Fast Performance</h3>
-      <p>Experience lightning speed with every task.</p>
-    </div>
-    <div class="feature">
-      <img src="https://via.placeholder.com/60" alt="Feature 3">
-      <h3>Secure Data</h3>
-      <p>Your information is safe with top-level encryption.</p>
-    </div>
-  </section>  <footer>
-    <p>Contact us: email@example.com | +234 800 123 4567</p>
-    <p>
-      <a href="#">Facebook</a> |
-      <a href="#">Twitter</a> |
-      <a href="#">Instagram</a>
-    </p>
-    <p>&copy; 2025 AmazingApp. All rights reserved.</p>
-  </footer>
-</body>
+  <div class="calculator">
+    <input type="text" class="display" id="display" readonly>
+    <div class="buttons">
+      <button onclick="press('7')">7</button>
+      <button onclick="press('8')">8</button>
+      <button onclick="press('9')">9</button>
+      <button class="operator" onclick="press('/')">/</button><button onclick="press('4')">4</button>
+  <button onclick="press('5')">5</button>
+  <button onclick="press('6')">6</button>
+  <button class="operator" onclick="press('*')">*</button>
+
+  <button onclick="press('1')">1</button>
+  <button onclick="press('2')">2</button>
+  <button onclick="press('3')">3</button>
+  <button class="operator" onclick="press('-')">-</button>
+
+  <button onclick="press('0')">0</button>
+  <button onclick="press('.')">.</button>
+  <button class="equals" onclick="calculate()">=</button>
+  <button class="operator" onclick="press('+')">+</button>
+
+  <button class="clear" onclick="clearDisplay()">C</button>
+</div>
+
+  </div>  <script>
+    let display = document.getElementById('display');
+
+    function press(value) {
+      display.value += value;
+    }
+
+    function calculate() {
+      try {
+        display.value = eval(display.value);
+      } catch {
+        display.value = 'Error';
+      }
+    }
+
+    function clearDisplay() {
+      display.value = '';
+    }
+  </script></body>
 </html>
